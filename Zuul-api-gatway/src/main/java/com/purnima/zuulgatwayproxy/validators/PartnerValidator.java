@@ -1,11 +1,13 @@
 package com.purnima.zuulgatwayproxy.validators;
 
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import com.purnima.zuulgatwayproxy.dtos.ApplicationMainVO;
 
+@Component
 public class PartnerValidator implements Validator {
 
 	@Override
@@ -15,6 +17,7 @@ public class PartnerValidator implements Validator {
 
 	@Override
 	public void validate(Object target, Errors errors) {
+		
 		ApplicationMainVO objectToValidate = (ApplicationMainVO) target;
 		objectToValidate.getRequiredFields().stream().forEach(fieldValue -> 
 			ValidationUtils.rejectIfEmpty(errors, fieldValue, fieldValue + "Can't be empty or null")

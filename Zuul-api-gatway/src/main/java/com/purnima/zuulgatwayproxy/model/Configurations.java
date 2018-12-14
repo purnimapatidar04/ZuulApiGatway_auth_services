@@ -1,6 +1,9 @@
 package com.purnima.zuulgatwayproxy.model;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,6 +33,11 @@ public class Configurations  implements Serializable{
 	    
 	    @Column(name="mandate_parm")
 	    private String mandateParm;
+	    
+	    
+	    public List<String> fieldsForValidation(){
+	    	return Arrays.asList(this.mandateParm.split(","));
+	    }
 	    
 	    
 }

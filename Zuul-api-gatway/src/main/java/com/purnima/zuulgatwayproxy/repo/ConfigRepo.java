@@ -15,6 +15,6 @@ public interface ConfigRepo extends JpaRepository<Configurations, Integer>{
 	List<Configurations> findByApiName(String apiname);
 	
 	@Query("SELECT c FROM Configurations c WHERE c.partnerName = :partnerName and c.apiName= :apiName")
-    public List<Configurations> findByPArtnerAndApiName(@Param("partnerName") String partnerName,@Param("apiName") String apiName);
+    public Configurations findByPArtnerAndApiName(@Param("partnerName") String partnerName,@Param("apiName") String apiName);
 
 }

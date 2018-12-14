@@ -1,6 +1,7 @@
 package com.purnima.zuulgatwayproxy.dtos;
 
 public class ApplicationDetailsVO extends ApplicationMainVO {
+	
 	String type;
 	String purpose;
 	String use;

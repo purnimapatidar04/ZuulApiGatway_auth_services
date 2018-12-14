@@ -30,8 +30,8 @@ public class RouteFilter extends ZuulFilter {
    ctx.addZuulRequestHeader("Purnima", "Test");
    HttpServletRequest request = ctx.getRequest();
    System.out.println("Request Method routtt: " + request.getMethod() + " Request URL : " + request.getRequestURL().toString() +"request >>");
-   ctx.setResponseBody("hi");
-   ctx.setSendZuulResponse(false); 
+   //ctx.setResponseBody("hi");
+  // ctx.setSendZuulResponse(false); 
    return null;
   }
 
