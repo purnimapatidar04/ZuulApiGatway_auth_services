@@ -19,23 +19,23 @@ public class GatwayproxyApplication  extends SpringBootServletInitializer{
 		SpringApplication.run(GatwayproxyApplication.class, args);
 	}
 
-//	@Bean
-//	public PreFilter preFilter() {
-//		System.out.println("PRe");
-//		return new PreFilter();
-//	}
-//	@Bean
-//	public PostFilter postFilter() {
-//		System.out.println("post");
-//		return new PostFilter();
-//	}
-//	@Bean
-//	public ErrorFilter errorFilter() {
-//		return new ErrorFilter();
-//	}
-//	@Bean
-//	public RouteFilter routeFilter() {
-//		System.out.println("rout");
-//		return new RouteFilter();
-//	}
+	@Bean
+	public PreFilter preFilter() {
+		System.out.println("PRe");
+		return new PreFilter();
+	}
+	@Bean
+	public PostFilter postFilter() {
+		System.out.println("post");
+		return new PostFilter();
+	}
+	@Bean
+	public ErrorFilter errorFilter() {
+		return new ErrorFilter();
+	}
+	@Bean
+	public RouteFilter routeFilter() {
+		System.out.println("rout");
+		return new RouteFilter();
+	}
 }
