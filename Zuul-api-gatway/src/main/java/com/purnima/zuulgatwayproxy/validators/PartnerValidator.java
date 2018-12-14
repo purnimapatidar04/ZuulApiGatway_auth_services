@@ -6,6 +6,7 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import com.purnima.zuulgatwayproxy.dtos.ApplicationMainVO;
+import com.purnima.zuulgatwayproxy.enhancevalidators.CustomizedValidators;
 
 @Component
 public class PartnerValidator implements Validator {
@@ -17,11 +18,15 @@ public class PartnerValidator implements Validator {
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		
+		@SuppressWarnings("rawtypes")
 		ApplicationMainVO objectToValidate = (ApplicationMainVO) target;
-		objectToValidate.getRequiredFields().stream().forEach(fieldValue -> 
-			ValidationUtils.rejectIfEmpty(errors, fieldValue, fieldValue + "Can't be empty or null")
-		);
+		objectToValidate.getViewObject().getAllRequiredFields().stream().forEach(fieldValue -> {
+			ValidationUtils.rejectIfEmpty(errors, fieldValue, fieldValue + "Can't be empty or null");
+			if (fieldValue.equalsIgnoreCase("email")) {
+				CustomizedValidators.rejectInvalidEmails(errors, fieldValue, "Email is not valid");
+			}
+		});
+
 	}
 
 }

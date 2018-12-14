@@ -2,15 +2,20 @@ package com.purnima.zuulgatwayproxy.dtos;
 
 import java.util.List;
 
-public class ApplicationMainVO {
-	List<String> requiredFields;
+public class ApplicationMainVO<T extends CommonVO> {
 
-	public List<String> getRequiredFields() {
-		return requiredFields;
+	private T viewObject;
+
+	public ApplicationMainVO(T viewObject) {
+		this.viewObject = viewObject;
 	}
 
-	public void setRequiredFields(List<String> requiredFields) {
-		this.requiredFields = requiredFields;
+	public T getViewObject() {
+		return this.viewObject;
+	}
+	
+	public List<String> getRequiredFields(){
+		return this.viewObject.getAllRequiredFields();
 	}
 
 }
