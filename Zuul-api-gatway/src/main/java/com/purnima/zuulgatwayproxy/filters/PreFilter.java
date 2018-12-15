@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.nio.charset.Charset;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.text.Utilities;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StreamUtils;
@@ -15,8 +16,10 @@ import com.google.gson.Gson;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.purnima.zuulgatwayproxy.dtos.ApplicationDetailsVO;
+import com.purnima.zuulgatwayproxy.model.ClientRequest;
 import com.purnima.zuulgatwayproxy.model.Configurations;
 import com.purnima.zuulgatwayproxy.repo.ConfigRepo;
+import com.purnima.zuulgatwayproxy.util.Utility;
 import com.purnima.zuulgatwayproxy.validators.PartnerValidator;
 
 public class PreFilter extends ZuulFilter {
@@ -47,9 +50,8 @@ public class PreFilter extends ZuulFilter {
   @Override
   public Object run() {
     RequestContext ctx = RequestContext.getCurrentContext();
-    ctx.addZuulRequestHeader("Purnima", "Test");
     HttpServletRequest request = ctx.getRequest();
-
+    System.out.println("header >>"+request.getHeader("Authorization"));
     System.out.println("Request Method : " + request.getMethod() + " Request URL : " + request.getRequestURL().toString() +"request >>");
     InputStream in = (InputStream) ctx.get("requestEntity");
     try {
@@ -60,10 +62,10 @@ public class PreFilter extends ZuulFilter {
 	}
 	String body = StreamUtils.copyToString(in, Charset.forName("UTF-8"));
 	Gson g = new Gson();
-	ApplicationDetailsVO am= g.fromJson(body, ApplicationDetailsVO.class);
-	
+	ClientRequest req= g.fromJson(body, ClientRequest.class);
+	final ApplicationDetailsVO am = Utility.extractObject(req.getData(), ApplicationDetailsVO.class);
 	Errors er=new BeanPropertyBindingResult(am, am.getClass().getName());;
-	Configurations configEntity=config.findByPArtnerAndApiName("p1", "createApplication");
+	Configurations configEntity=config.findByPArtnerAndApiName(request.getHeader("Authorization"), "createApplication");
     am.setRequiredFields(configEntity.fieldsForValidation());
     System.out.println("sasdc");
 	partnerValidator.validate(am, er);
