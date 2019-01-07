@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -33,6 +34,10 @@ public class Configurations  implements Serializable{
 	    
 	    @Column(name="mandate_parm")
 	    private String mandateParm;
+	    
+	    @Lob
+	    @Column(name="mandate_parm1")
+	    private String mandateParm1;
 	    
 	    
 	    public List<String> fieldsForValidation(){

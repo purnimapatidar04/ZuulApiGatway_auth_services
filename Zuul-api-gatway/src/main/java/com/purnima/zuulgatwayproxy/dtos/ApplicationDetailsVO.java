@@ -6,14 +6,15 @@ import lombok.Data;
 
 @Data
 public class ApplicationDetailsVO extends ApplicationMainVO {
-	
-	
-	
+Boolean isPartner;
+	Integer noOfPartners;
+	String llpinNumber;
+	String noOfPartner;
+	String dateOfIncorporation;
 	String pin;
 	String type;
 	String purpose;
 	String use;
-	String secured;
 	String securityType;
 	String otherSecurityType;
 	String securityValue;
@@ -45,7 +46,8 @@ public class ApplicationDetailsVO extends ApplicationMainVO {
 	Integer atThisAddressSince;
 	String comapnyPhone;
     String stdCode;
-    boolean isSubmitted;
+    Boolean isSubmitted;
+    Boolean secured;
     List<String> details;
     String constitution;
     String businessType;
@@ -56,8 +58,8 @@ public class ApplicationDetailsVO extends ApplicationMainVO {
     String key;
     String pan;
     String birthDate;
-    boolean isFormSubmittedAtLeastOnce;
-    boolean permamentAddressSame;
+    Boolean isFormSubmittedAtLeastOnce;
+    Boolean permamentAddressSame;
     String houseStatus;
     String accommodationType;
     Integer rentAmount;
@@ -90,6 +92,12 @@ public class ApplicationDetailsVO extends ApplicationMainVO {
     Object permanentAddress;
     String relation;
     String phone;
+    String locality;
+    String myBusinessType;
+    
+    String cinNumber;
+    Integer sharePercent;
+    
     
     
    

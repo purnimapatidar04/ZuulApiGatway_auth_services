@@ -2,6 +2,9 @@ package com.purnima.zuulgatwayproxy.model;
 
 import java.util.HashMap;
 
+import lombok.Data;
+
+@Data
 public class UpdateBusinessRequest {
 	private String key;
 	private HashMap<String,Object> data;
